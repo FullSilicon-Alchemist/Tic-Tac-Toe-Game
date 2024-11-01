@@ -105,7 +105,8 @@ int main()
     string pattern[3][3] = {
         {"1,1", "1,2", "1,3"},
         {"2,1", "2,2", "2,3"},
-        {"3,1", "3,2", "3,3"}};
+        {"3,1", "3,2", "3,3"}
+    };
 
     cout << "\t\tWelcome to Tic Tac Toe Game!" << endl;
     cout << "Enter first player name = ";
@@ -145,12 +146,12 @@ int main()
         printing_pattern(pattern);
         if (win_lose(pattern) == "X")
         {
-            cout << "\nThe winner is " << player1 << endl;
+            cout << endl << "Congratulations!!! The winner is " << player1 << endl;
             break;
         }
         else if (win_lose(pattern) == "O")
         {
-            cout << "\nThe winner is " << player2 << endl;
+            cout << endl << "Congratulations!!! The winner is " << player2 << endl;
             break;
         }
         else

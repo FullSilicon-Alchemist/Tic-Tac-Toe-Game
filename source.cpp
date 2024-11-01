@@ -6,27 +6,26 @@ using namespace std;
 // printing the pattern
 int printing_pattern(string pattern[3][3])
 {
-    cout << "\n";
     for (int i = 0; i < 3; i++)
     {
-        cout << "\t";
+        cout << "\t|\t\t|\n";
         for (int j = 0; j < 3; j++)
         {
             cout << pattern[i][j];
-            // to avoid the last vertical line
+            // to avoid last vertical line
             if (j != 2)
             {
-                cout << "\t||\t";
+                cout << "\t|\t";
             }
         }
-        // to avoid the last horizontal line
+        cout << "\n\t|\t\t|\n";
+        // to avoid last horizontal line
         if (i != 2)
         {
             cout << endl
-                 << string(40, '-') << endl;
+                 << string(45, '-') << endl;
         }
     }
-    cout << "\n";
     return 0;
 }
 
@@ -34,11 +33,11 @@ int printing_pattern(string pattern[3][3])
 
 bool check(int x, int y, string pattern[3][3])
 {
-    if (x < 0 || x > 2 || y < 0 || y > 2)
+    if (x < 1 || x > 3 || y < 1 || y > 3)
     {
         return false;
     }
-    else if (pattern[x][y] == "X" || pattern[x][y] == "O")
+    else if (pattern[x - 1][y - 1] == "X" || pattern[x - 1][y - 1] == "O")
     {
         return false;
     }
@@ -79,7 +78,7 @@ string win_lose(string pattern[3][3])
     }
     else
     {
-        return "NA";
+        return "No Wins No Lose Still";
     }
 }
 
@@ -104,10 +103,11 @@ int main()
 {
     string player1, player2;
     string pattern[3][3] = {
-        {"0,0", "0,1", "0,2"},
-        {"1,0", "1,1", "1,2"},
-        {"2,0", "2,1", "2,2"}};
+        {"1,1", "1,2", "1,3"},
+        {"2,1", "2,2", "2,3"},
+        {"3,1", "3,2", "3,3"}};
 
+    cout << "\t\tWelcome to Tic Tac Toe Game!" << endl;
     cout << "Enter first player name = ";
     getline(cin, player1);
     cout << "Your symbol is X\n";
@@ -128,12 +128,12 @@ int main()
         {
             if (current_player == 1)
             {
-                pattern[x][y] = "X";
+                pattern[x - 1][y - 1] = "X";
                 current_player = 2;
             }
             else
             {
-                pattern[x][y] = "O";
+                pattern[x - 1][y - 1] = "O";
                 current_player = 1;
             }
         }
@@ -160,9 +160,19 @@ int main()
 
         if (draw_game(pattern))
         {
-            cout << "\nThe game is draw" << endl;
+            cout << "\nThis game is draw" << endl;
             break;
         }
+    }
+    char play_again;
+    cout << "Do you want to play again? (Y/N) = ";
+    cin >> play_again;
+    if(tolower(play_again)== 'y'){
+        cin.ignore();
+        main();
+    }
+    else{
+        cout << endl << "Thank you very much for playing" << endl << "Happy Gaming!!!" << endl;
     }
     system("pause");
     return 0;
